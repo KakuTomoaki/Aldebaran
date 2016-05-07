@@ -63,19 +63,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Camera\CameraFade.cs" />
-    <Compile Include="Assets\Script\Camera\CameraScript.cs" />
-    <Compile Include="Assets\Script\Camera\ScrollObjectScript.cs" />
-    <Compile Include="Assets\Script\GlobalVariableScript.cs" />
-    <Compile Include="Assets\Script\Menu\GameStartScript.cs" />
-    <Compile Include="Assets\Script\Menu\OptionScript.cs" />
-    <Compile Include="Assets\Script\Menu\ScoreScript.cs" />
-    <Compile Include="Assets\Script\Option\BGMVolume.cs" />
-    <Compile Include="Assets\Script\Option\OptionBackScript.cs" />
-    <Compile Include="Assets\Script\Option\SEVolume.cs" />
-    <Compile Include="Assets\Script\Option\SetBGMVolume.cs" />
-    <Compile Include="Assets\Script\Option\SetSEVolume.cs" />
-    <Compile Include="Assets\Script\Score\ScoreBackScript.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraFade.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
+    <Compile Include="Assets\Scripts\Camera\ScrollObjectScript.cs" />
+    <Compile Include="Assets\Scripts\Game\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\GlobalVariableScript.cs" />
+    <Compile Include="Assets\Scripts\Menu\GameStartScript.cs" />
+    <Compile Include="Assets\Scripts\Menu\OptionScript.cs" />
+    <Compile Include="Assets\Scripts\Menu\ScoreScript.cs" />
+    <Compile Include="Assets\Scripts\Option\BGMVolume.cs" />
+    <Compile Include="Assets\Scripts\Option\OptionBackScript.cs" />
+    <Compile Include="Assets\Scripts\Option\SEVolume.cs" />
+    <Compile Include="Assets\Scripts\Option\SetBGMVolume.cs" />
+    <Compile Include="Assets\Scripts\Option\SetSEVolume.cs" />
+    <Compile Include="Assets\Scripts\Score\ScoreBackScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
