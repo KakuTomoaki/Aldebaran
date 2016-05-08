@@ -30,13 +30,7 @@ public class PlayerScript : MonoBehaviour {
 	private bool isCleard = false;
 	private bool isGameOver = false;
 	private bool isScoreSaveEnd = false;
-
-    /* 実機の速度を上げれるかもしれないコード↓
-    void Awake() {
-        QualitySettings.vSyncCount = 1;
-        Application.targetFrameRate = 60;
-    }
-    */
+    
 
     void Start() {
         rb = GetComponent<Rigidbody2D>(); //GetComponentの処理をキャッシュしておく
@@ -56,12 +50,6 @@ public class PlayerScript : MonoBehaviour {
     //ジャンプの処理はUpdateメソッドに記述
     void Update() {
         anim.SetBool("Run", true);
-        //if (GlobalVariableScript.moveSpeed == 0 && isGameOver == false) {
-        //anim.speed = 1;
-        //anim.SetTrigger("Stay");
-        // } else if (GlobalVariableScript.moveSpeed == 0 && isGameOver == true){
-
-        // }
 
         //クリアしたかどうかの判定を追加
         //終了処理は一度だけ呼ぶ
@@ -105,9 +93,11 @@ public class PlayerScript : MonoBehaviour {
 
         //スマートフォン用
         if (Input.touchCount > 0) {
-            if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない
+            /*
+            if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない ※一旦保留
                 return;
             }
+            */
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began) {
                 if (restJumps > 0) {
@@ -121,9 +111,11 @@ public class PlayerScript : MonoBehaviour {
 
         //PC版用
         if (Input.GetButtonDown("Jump")) {
-            if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない
+            /*
+            if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない ※一旦保留
                 return;
             }
+            */
             if (restJumps > 0) {
                 if (isGrounded == false) {
                     restJumps = 1;
