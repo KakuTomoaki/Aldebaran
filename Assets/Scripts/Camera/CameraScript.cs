@@ -10,6 +10,9 @@ public class CameraScript : MonoBehaviour {
     // 画像のPixel Per Unit
     private float pixelPerUnit = 100f;
 
+    //プレイヤーのオブジェクトを格納する変数を宣言
+    private GameObject player = null;
+
     void Awake() {
         float aspect = (float)Screen.height / (float)Screen.width;
         float bgAcpect = height / width;
@@ -37,5 +40,24 @@ public class CameraScript : MonoBehaviour {
         }
 
     }
-    
+
+    void Start() {
+        //プレイヤーを探しておく
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    void Update() {
+        //PlayerのX軸が0よりマイナスの際カメラのX軸をを0.0に固定、Y軸は0.0
+        if (player.transform.position.x <= 0.0) {
+            transform.position = new Vector3(0.0f,
+                                             0.0f,
+                                             this.transform.position.z);
+        }
+        //PlayerのX軸が-2.0を上回ったらカメラ追従開始(+2.0f)
+        if (player.transform.position.x >= -2.0) {
+            transform.position = new Vector3(player.transform.position.x + 2.0f,
+                                             0.0f,
+                                             this.transform.position.z);
+        }
+    }
 }

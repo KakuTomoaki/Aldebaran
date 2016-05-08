@@ -71,8 +71,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraFade.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
-    <Compile Include="Assets\Scripts\Camera\ScrollObjectScript.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerScript.cs" />
+    <Compile Include="Assets\Scripts\Game\ScrollObjectScript.cs" />
     <Compile Include="Assets\Scripts\GlobalVariableScript.cs" />
     <Compile Include="Assets\Scripts\Menu\GameStartScript.cs" />
     <Compile Include="Assets\Scripts\Menu\OptionScript.cs" />

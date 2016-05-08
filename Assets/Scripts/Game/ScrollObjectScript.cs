@@ -12,7 +12,7 @@ public class ScrollObjectScript : MonoBehaviour {
 
     void Update() {
         //毎フレームxポジションを移動させる
-        transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
+        transform.Translate(1 * speed * Time.deltaTime, 0, 0);
 
         //スクロールの目標ポイントまで達成したかをチェック
         if (transform.position.x <= endPosition) ScrollEnd();
