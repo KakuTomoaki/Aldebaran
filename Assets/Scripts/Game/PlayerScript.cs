@@ -18,8 +18,8 @@ public class PlayerScript : MonoBehaviour {
     //音関連
     private AudioSource SE_Jump;
     private AudioSource SE_Landing;
+    private AudioSource SE_Fall;
     private AudioSource SE_Bom;
-    private AudioSource SE_OneSpike;
     private AudioSource Jump_01;
     private AudioSource Jump_02;
     private AudioSource GameOver002;
@@ -40,8 +40,8 @@ public class PlayerScript : MonoBehaviour {
         AudioSource[] audioSources = GetComponents<AudioSource>();
         SE_Jump = audioSources[0];
         SE_Landing = audioSources[1];
-        SE_Bom = audioSources[2];
-        SE_OneSpike = audioSources[3];
+        SE_Fall = audioSources[2];
+        SE_Bom = audioSources[3];
         Jump_01 = audioSources[4];
         Jump_02 = audioSources[5];
     }
@@ -104,7 +104,7 @@ public class PlayerScript : MonoBehaviour {
                     if (isGrounded == false) {
                         restJumps = 1;
                     }
-                    Jump();                                     //ジャンプメソッドで実行
+                    Jump();
                 }
             }
         }
@@ -120,7 +120,7 @@ public class PlayerScript : MonoBehaviour {
                 if (isGrounded == false) {
                     restJumps = 1;
                 }
-                Jump();                                         //ジャンプメソッドで実行
+                Jump();
             }
         }
         Anim();
@@ -142,16 +142,17 @@ public class PlayerScript : MonoBehaviour {
             restJumps = 2; //ジャンプ回数リセット
             SE_Landing.PlayOneShot(SE_Landing.clip); // 着地音再生
         }
-        /*
-        if (col.gameObject.tag == "Spike_Big") {
-            SE_Bom.PlayOneShot(SE_Bom.clip);      // 爆発音再生
+        
+        if (col.gameObject.tag == "DeadZone") {
+            SE_Fall.PlayOneShot(SE_Fall.clip);                // 爆発音再生
             GameOver();
-            isGameOver = true;						// ゲームオーバーフラグを立てる
+            isGameOver = true;					        	  // ゲームオーバーフラグを立てる
         }
-        if (col.gameObject.tag == "OneSpike") {
-            SE_OneSpike.PlayOneShot(SE_OneSpike.clip);      // 爆発音再生
+        
+        if (col.gameObject.tag == "Spike") {
+            SE_Bom.PlayOneShot(SE_Bom.clip);                  // 爆発音再生
             GameOver();
-			isGameOver = true;						// ゲームオーバーフラグを立てる
+			isGameOver = true;			　　			        　// ゲームオーバーフラグを立てる
         }
 
 		// ゲームオーバーだった場合
@@ -164,19 +165,20 @@ public class PlayerScript : MonoBehaviour {
 			ResultEdit.SendMessage ("ResultGameOver");
 
 		}
-        */	
-	}
-    /*
+    }
+    
+    //GameOverメソッド
     private void GameOver() {
         anim.speed = 0;
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
-        restJumps = 0;                        // ジャンプ回数0
-        GlobalVariableScript.moveSpeed = 0;   // 移動速度0
-        GlobalVariableScript.isGameOver_BGM = true; // BGM再生停止フラグON
+        restJumps = 0;                                      // ジャンプ回数0
+        GlobalVariableScript.moveSpeed = 0;                 // 移動速度0
+        GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
     }
-    */
-    void Jump() {    //ジャンプの処理を全てまとめました
+    
+    //Jumpメソッド
+    void Jump() {
 
         anim.SetTrigger("Jump");   //ジャンプアニメーションの開始
 
