@@ -7,7 +7,6 @@ TagManager:
   - Floor
   - DeadZone
   - Spike
-  - Spike_Big
   layers:
   - Default
   - TransparentFX

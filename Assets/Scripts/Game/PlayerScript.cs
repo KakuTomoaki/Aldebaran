@@ -144,7 +144,7 @@ public class PlayerScript : MonoBehaviour {
         }
         
         if (col.gameObject.tag == "DeadZone") {
-            SE_Fall.PlayOneShot(SE_Fall.clip);                // 爆発音再生
+            SE_Fall.PlayOneShot(SE_Fall.clip);                // 落下音再生
             GameOver();
             isGameOver = true;					        	  // ゲームオーバーフラグを立てる
         }
@@ -152,9 +152,10 @@ public class PlayerScript : MonoBehaviour {
         if (col.gameObject.tag == "Spike") {
             SE_Bom.PlayOneShot(SE_Bom.clip);                  // 爆発音再生
             GameOver();
-			isGameOver = true;			　　			        　// ゲームオーバーフラグを立てる
+			isGameOver = true;                                // ゲームオーバーフラグを立てる
         }
 
+        /*
 		// ゲームオーバーだった場合
 		if (isGameOver == true) {
 			// カウントダウン停止
@@ -163,12 +164,12 @@ public class PlayerScript : MonoBehaviour {
 			//データ表示処理呼び出し
 			ResultEdit = GameObject.Find ("ResultEdit");
 			ResultEdit.SendMessage ("ResultGameOver");
-
 		}
+        */
     }
     
     //GameOverメソッド
-    private void GameOver() {
+    void GameOver() {
         anim.speed = 0;
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
