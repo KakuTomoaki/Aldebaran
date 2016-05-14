@@ -40,15 +40,32 @@ public class Score : MonoBehaviour {
 		private set;
 	}
 	/*
-    *スコアに1を足す関数
+    *黄色コインをとったときの処理
     */
-	public void Add(){
-		score++;
+	public void Add_Yellow(){
+		score = score + GlobalVariableScript.CoinYellowPoint;
 	}
-	/*
+
+    /*
+    *青色コインをとったときの処理
+    */
+    public void Add_Blue()
+    {
+        score = score + GlobalVariableScript.CoinBluePoint;
+    }
+
+    /*
+    *赤色コインをとったときの処理
+    */
+    public void Add_Red()
+    {
+        score = score + GlobalVariableScript.CoinRedPoint;
+    }
+
+    /*
     *スコアを0にする関数
     */
-	public void Reset(){
+    public void Reset(){
 		score = 0;
 	}
 }

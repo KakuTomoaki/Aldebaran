@@ -15,6 +15,11 @@ public class GlobalVariableScript : MonoBehaviour {
     public static bool isGameOver_BGM = false;              // GameOver時、BGMの再生停止のフラグ
     public static bool isPause_BGM = false;                 // Pause時、BGMの一時停止のフラグ
 
+    //コイン
+    public static int CoinYellowPoint = 1;                  // 黄色コインをとったときに増えるポイント
+    public static int CoinBluePoint = 10;                   // 青色コインをとったときに増えるポイント
+    public static int CoinRedPoint = 100;                   // 赤色コインをとったときに増えるポイント
+
     // このオブジェクト用の変数
     private static bool isCreatedObj = false;   // オブジェクト作成済みフラグ
 

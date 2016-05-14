@@ -31,8 +31,7 @@ public class Coin : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D other){
 		//もし 接触したオブジェクトのタグが"Player"なら
 		if (other.tag == "Player") {
-			//スコアに1を足す
-			Score.instance.Add ();
+			Score.instance.Add_Yellow();
 			
 			//描画を消す
 			mRenderer.enabled = false;

@@ -61,11 +61,19 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraFade.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraScript.cs" />
     <Compile Include="Assets\Scripts\Game\Coin.cs" />
+    <Compile Include="Assets\Scripts\Game\Coin_Blue.cs" />
+    <Compile Include="Assets\Scripts\Game\Coin_Red.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerScrollObject.cs" />
     <Compile Include="Assets\Scripts\Game\Score.cs" />

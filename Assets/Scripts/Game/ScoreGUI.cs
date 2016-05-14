@@ -16,7 +16,7 @@ public class ScoreGUI : MonoBehaviour {
 		//Scoreクラスからscoreを得る
 		int score = Score.instance.score;
 		//3桁になるように0を足す
-		string scoreAddZero = score.ToString ("000");
+		string scoreAddZero = score.ToString ("0000000");
 		//テキストをGUIで表示する
 		mText.text = "Score:" + scoreAddZero;
 	}
