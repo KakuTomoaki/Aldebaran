@@ -7,7 +7,7 @@ public class GlobalVariableScript : MonoBehaviour {
     public const string SEVolumePrefs = "SEVolume"; //Effect Volumeのデータを書き込むPlayerPrefs
 
     //プレイヤーのステータス
-    public const int MoveSpeedDefault = 3;      //デフォルトの横移動速度
+    public const int MoveSpeedDefault = 6;      //デフォルトの横移動速度
 
     public static int moveSpeed = MoveSpeedDefault;         // ユニティちゃんの移動速度
     public static float timer = 0;                          // 秒数
