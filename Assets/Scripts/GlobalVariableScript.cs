@@ -3,6 +3,9 @@ using System.Collections;
 
 public class GlobalVariableScript : MonoBehaviour {
 
+    //ゲームシーンで利用する変数
+    public static int CreateCount = 0;  //呼びだされたobjectの数
+
     public const string BGMVolumePrefs = "BGMVolume";   //Music Volumeのデータを書き込むPlayerPrefs
     public const string SEVolumePrefs = "SEVolume"; //Effect Volumeのデータを書き込むPlayerPrefs
 

@@ -13,7 +13,8 @@ public class StepCreate : MonoBehaviour
         if (gameObject.transform.position.x >= roop)
         {
             int i = Random.Range(0, 4);
-            Instantiate(Prefab[i], new Vector3(gameObject.transform.position.x + 18, 0, 0), Quaternion.identity);           
+            Instantiate(Prefab[i], new Vector3(gameObject.transform.position.x + 18, 0, 0), Quaternion.identity);
+            GlobalVariableScript.CreateCount = +1;
             roop = roop + 17;
         }
     }
