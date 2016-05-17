@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour {
     //リザルト関連
     private GameObject ResultEdit;
 	private bool isCleard = false;
+    private bool isContinue = false;
 	private bool isGameOver = false;
 	private bool isScoreSaveEnd = false;
     
@@ -50,6 +51,19 @@ public class PlayerScript : MonoBehaviour {
     //ジャンプの処理はUpdateメソッドに記述
     void Update() {
         anim.SetBool("Run", true);
+
+        //CreateCountにより移動速度変化。
+        if(GlobalVariableScript.CreateCount <= 5){
+            GlobalVariableScript.moveSpeed = 6;
+        } else if(GlobalVariableScript.CreateCount <= 10) {
+            GlobalVariableScript.moveSpeed = 9;
+        } else if(GlobalVariableScript.CreateCount <= 15) {
+            GlobalVariableScript.moveSpeed = 12;
+        } else if(GlobalVariableScript.CreateCount <= 20) {
+            GlobalVariableScript.moveSpeed = 15;
+        } else if(GlobalVariableScript.CreateCount <= 25) {
+            GlobalVariableScript.moveSpeed = 18;
+        }
 
         //クリアしたかどうかの判定を追加
         //終了処理は一度だけ呼ぶ
@@ -146,13 +160,18 @@ public class PlayerScript : MonoBehaviour {
         if (col.gameObject.tag == "DeadZone") {
             SE_Fall.PlayOneShot(SE_Fall.clip);                // 落下音再生
             GameOver();
-            isGameOver = true;					        	  // ゲームオーバーフラグを立てる
+            GlobalVariableScript.PlayerLife = GlobalVariableScript.PlayerLife -1;
+            isContinue = true;
+            Continue();
+            GameOver();
         }
         
         if (col.gameObject.tag == "Spike") {
             SE_Bom.PlayOneShot(SE_Bom.clip);                  // 爆発音再生
+            GlobalVariableScript.PlayerLife = GlobalVariableScript.PlayerLife - 1;
+            isContinue = true;
+            Continue();
             GameOver();
-			isGameOver = true;                                // ゲームオーバーフラグを立てる
         }
 
         /*
@@ -167,15 +186,30 @@ public class PlayerScript : MonoBehaviour {
 		}
         */
     }
-    
+
+    //Continueメソッド
+    void Continue() {
+        //ここにContinue時のソースを記入
+        if(isContinue == true) {
+
+        } else {
+            return;
+        }
+    }
+
     //GameOverメソッド
     void GameOver() {
-        anim.speed = 0;
-        rb.velocity = Vector2.zero;
-        rb.isKinematic = true;
-        restJumps = 0;                                      // ジャンプ回数0
-        GlobalVariableScript.moveSpeed = 0;                 // 移動速度0
-        GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
+        if (GlobalVariableScript.PlayerLife == 0) {
+            isGameOver = true;
+            anim.speed = 0;
+            rb.velocity = Vector2.zero;
+            rb.isKinematic = true;
+            restJumps = 0;                                      // ジャンプ回数0
+            GlobalVariableScript.moveSpeed = 0;                 // 移動速度0
+            GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
+        } else {
+            return;
+        }
     }
     
     //Jumpメソッド

@@ -49,6 +49,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 481088}
   - 212: {fileID: 21297510}
+  - 114: {fileID: 11489646}
   m_Layer: 10
   m_Name: StepSet1
   m_TagString: Floor
@@ -755,6 +756,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4fd9fc61aa58e748a421bcd67d5bf7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11489646
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a021e1817c755a449015266b3a60184, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11491292
