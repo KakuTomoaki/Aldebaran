@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using System;
 
 public class PlayerScript : MonoBehaviour {
@@ -31,7 +32,10 @@ public class PlayerScript : MonoBehaviour {
     private bool isContinue = false;
 	private bool isGameOver = false;
 	private bool isScoreSaveEnd = false;
-    
+
+    //表示用オブジェクト
+    Text text;
+    Image image;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>(); //GetComponentの処理をキャッシュしておく
@@ -159,19 +163,40 @@ public class PlayerScript : MonoBehaviour {
         
         if (col.gameObject.tag == "DeadZone") {
             SE_Fall.PlayOneShot(SE_Fall.clip);                // 落下音再生
-            GameOver();
-            GlobalVariableScript.PlayerLife = GlobalVariableScript.PlayerLife -1;
-            isContinue = true;
-            Continue();
-            GameOver();
+
+            //ライフを1へらす
+            GlobalVariableScript.PlayerLife = GlobalVariableScript.PlayerLife - 1;
+
+            //ライフが残っていた場合
+            if (GlobalVariableScript.PlayerLife >= 0)
+            {
+                //コンティニュー処理を呼び出す
+                Continue();
+            }
+            else
+            {
+                //ゲームオーバー処理を呼び出す
+                GameOver();
+            }
         }
         
         if (col.gameObject.tag == "Spike") {
             SE_Bom.PlayOneShot(SE_Bom.clip);                  // 爆発音再生
+
+            //ライフを1へらす
             GlobalVariableScript.PlayerLife = GlobalVariableScript.PlayerLife - 1;
-            isContinue = true;
-            Continue();
-            GameOver();
+
+            //ライフが残っていた場合
+            if (GlobalVariableScript.PlayerLife >= 0)
+            {
+                //コンティニュー処理を呼び出す
+                Continue();
+            }
+            else
+            {
+                //ゲームオーバー処理を呼び出す
+                GameOver();
+            }
         }
 
         /*
@@ -189,17 +214,27 @@ public class PlayerScript : MonoBehaviour {
 
     //Continueメソッド
     void Continue() {
-        //ここにContinue時のソースを記入
-        if(isContinue == true) {
+        //画面停止する
+        Time.timeScale = 0;
 
-        } else {
-            return;
-        }
+        //コンティニューのオブジェクトを表示する
+        text = GameObject.Find("Canvas/TxtContinue").GetComponent<Text>();
+        text.enabled = true;
+
+        image = GameObject.Find("Canvas/BtnContnueYes").GetComponent<Image>();
+        image.enabled = true;
+        text = GameObject.Find("Canvas/BtnContnueYes/Text").GetComponent<Text>();
+        text.enabled = true;
+
+        image = GameObject.Find("Canvas/BtnContinueNo").GetComponent<Image>();
+        image.enabled = true;
+        text = GameObject.Find("Canvas/BtnContinueNo/Text").GetComponent<Text>();
+        text.enabled = true;
     }
 
     //GameOverメソッド
     void GameOver() {
-        if (GlobalVariableScript.PlayerLife == 0) {
+//        if (GlobalVariableScript.PlayerLife == 0) {
             isGameOver = true;
             anim.speed = 0;
             rb.velocity = Vector2.zero;
@@ -207,9 +242,11 @@ public class PlayerScript : MonoBehaviour {
             restJumps = 0;                                      // ジャンプ回数0
             GlobalVariableScript.moveSpeed = 0;                 // 移動速度0
             GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
-        } else {
-            return;
-        }
+            GlobalVariableScript.PlayerLife = GlobalVariableScript.CnsPlayerLife;       //ライフを最大値に戻す
+//        }
+//        else {
+//            return;
+//        }
     }
     
     //Jumpメソッド

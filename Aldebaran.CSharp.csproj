@@ -75,6 +75,9 @@
     <Compile Include="Assets\Scripts\Game\Coin.cs" />
     <Compile Include="Assets\Scripts\Game\Coin_Blue.cs" />
     <Compile Include="Assets\Scripts\Game\Coin_Red.cs" />
+    <Compile Include="Assets\Scripts\Game\ContinueNo.cs" />
+    <Compile Include="Assets\Scripts\Game\ContinueYes.cs" />
+    <Compile Include="Assets\Scripts\Game\GameSceneInitialize.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerScript.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerScrollObject.cs" />
     <Compile Include="Assets\Scripts\Game\Score.cs" />

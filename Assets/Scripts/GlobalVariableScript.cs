@@ -3,24 +3,34 @@ using System.Collections;
 
 public class GlobalVariableScript : MonoBehaviour {
 
-    //ゲームシーンで利用する変数
-    public static int CreateCount = 0;  //呼びだされたobjectの数
+    /********************************
+    * 定数
+    ********************************/
+    //PlayerPrefs関連
+    public const string BGMVolumePrefs = "BGMVolume";       //Music Volumeのデータを書き込むPlayerPrefs
+    public const string SEVolumePrefs = "SEVolume";         //Effect Volumeのデータを書き込むPlayerPrefs
 
-    public const string BGMVolumePrefs = "BGMVolume";   //Music Volumeのデータを書き込むPlayerPrefs
-    public const string SEVolumePrefs = "SEVolume"; //Effect Volumeのデータを書き込むPlayerPrefs
+    //プレイヤー関連
+    public const int CnsPlayerLife = 3;                     //ユニティちゃんのライフの最大値
+
+    //コイン
+    public const int CoinYellowPoint = 100;                 // 黄色コインをとったときに増えるポイント
+    public const int CoinBluePoint = 500;                   // 青色コインをとったときに増えるポイント
+    public const int CoinRedPoint = 1000;                   // 赤色コインをとったときに増えるポイント
+
+    /********************************
+    * 変数
+    ********************************/
+    //ゲームシーンで利用する変数
+    public static int CreateCount = 0;                      //呼びだされたobjectの数
 
     //プレイヤーのステータス
     public static int moveSpeed = 6;                        // ユニティちゃんの移動速度
-    public static int PlayerLife = 3;                       // ユニティちゃんのライフ
+    public static int PlayerLife = CnsPlayerLife;           // ユニティちゃんのライフの現在の値
     public static float timer = 0;                          // 秒数
     public static bool isCountDown = false;					// カウントダウンするかのフラグ
     public static bool isGameOver_BGM = false;              // GameOver時、BGMの再生停止のフラグ
     public static bool isPause_BGM = false;                 // Pause時、BGMの一時停止のフラグ
-
-    //コイン
-    public static int CoinYellowPoint = 100;                  // 黄色コインをとったときに増えるポイント
-    public static int CoinBluePoint = 500;                   // 青色コインをとったときに増えるポイント
-    public static int CoinRedPoint = 1000;                   // 赤色コインをとったときに増えるポイント
 
     // このオブジェクト用の変数
     private static bool isCreatedObj = false;   // オブジェクト作成済みフラグ
