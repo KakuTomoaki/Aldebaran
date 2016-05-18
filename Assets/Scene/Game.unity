@@ -1940,6 +1940,7 @@ MonoBehaviour:
   - {fileID: 106138, guid: effcbae3e71ba9d4594652c37398b023, type: 2}
   - {fileID: 138934, guid: ac8dbdac29137b842a1ae832507ca39a, type: 2}
   - {fileID: 153230, guid: 4f2caa3add5278145bdac82aa3d88bec, type: 2}
+  - {fileID: 193574, guid: f2acdc8a5f187f3428272cc9ec9c2de7, type: 2}
 --- !u!95 &2058094859
 Animator:
   serializedVersion: 3
