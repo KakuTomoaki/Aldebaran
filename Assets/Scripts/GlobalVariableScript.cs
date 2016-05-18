@@ -12,6 +12,7 @@ public class GlobalVariableScript : MonoBehaviour {
 
     //プレイヤー関連
     public const int CnsPlayerLife = 3;                     //ユニティちゃんのライフの最大値
+    public const int CnsBounsRedCoin = 5;                   //ボーナスステージに突入するまでの赤コインの数
 
     //コイン
     public const int CoinYellowPoint = 100;                 // 黄色コインをとったときに増えるポイント
@@ -23,6 +24,8 @@ public class GlobalVariableScript : MonoBehaviour {
     ********************************/
     //ゲームシーンで利用する変数
     public static int CreateCount = 0;                      //呼びだされたobjectの数
+    public static int BonusRedCoin = 0;                     //赤コインの取得数
+    public static int ScoreSave = 0;                        //再呼び出し用スコア
 
     //プレイヤーのステータス
     public static int moveSpeed = 6;                        // ユニティちゃんの移動速度

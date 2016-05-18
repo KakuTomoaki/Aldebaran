@@ -63,6 +63,14 @@ public class Score : MonoBehaviour {
     }
 
     /*
+    *コンティニューしたときの処理
+    */
+    public void ScoreContinue()
+    {
+        score = GlobalVariableScript.ScoreSave;
+    }
+
+    /*
     *スコアを0にする関数
     */
     public void Reset(){

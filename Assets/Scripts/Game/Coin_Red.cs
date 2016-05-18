@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+
 //AudioSourceを必要とする
 //これを記述しておくとこのコンポーネントを追加した際に
 //一緒にAudioSorceコンポーネントも追加される
@@ -18,6 +20,12 @@ public class Coin_Red : MonoBehaviour {
     private Renderer mRenderer;
     private Collider2D mCollider2D;
 
+    private float CoinBarWidth;
+    private float CoinBarHeight;
+
+    private RectTransform recttransform01;
+    private RectTransform recttransform02;
+
     /*
 	 * はじめに呼ばれる関数
 	 */
@@ -27,6 +35,9 @@ public class Coin_Red : MonoBehaviour {
         mAudio = GetComponent<AudioSource>();
         mRenderer = GetComponent<Renderer>();
         mCollider2D = GetComponent<Collider2D>();
+
+        recttransform01 = GameObject.Find("Canvas/CoinBar01").GetComponent<RectTransform>();
+        recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -35,6 +46,12 @@ public class Coin_Red : MonoBehaviour {
         if (other.tag == "Player")
         {
             Score.instance.Add_Red();
+
+            //コインの取得枚数を増やす
+            GlobalVariableScript.BonusRedCoin = GlobalVariableScript.BonusRedCoin + 1;
+
+            //コインバーの表示を変更
+            recttransform02.sizeDelta = new Vector2(recttransform01.sizeDelta.x * GlobalVariableScript.BonusRedCoin/ GlobalVariableScript.CnsBounsRedCoin, recttransform02.sizeDelta.y);
 
             //描画を消す
             mRenderer.enabled = false;

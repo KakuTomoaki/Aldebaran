@@ -5,12 +5,23 @@ using UnityEngine.UI;
 public class GameSceneInitialize : MonoBehaviour {
 
     //表示用オブジェクト
-    Text text;
-    Image image;
+    private Text text;
+    private Image image;
+
+    private RectTransform recttransform01;
+    private RectTransform recttransform02;
 
     // Use this for initialization
     void Start () {
-        //変数の初期化
+        //初期化
+        Score.instance.ScoreContinue();
+
+        text = GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>();
+        text.text = "X" + GlobalVariableScript.PlayerLife.ToString();
+
+        recttransform01 = GameObject.Find("Canvas/CoinBar01").GetComponent<RectTransform>();
+        recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
+        recttransform02.sizeDelta = new Vector2(recttransform01.sizeDelta.x * GlobalVariableScript.BonusRedCoin / GlobalVariableScript.CnsBounsRedCoin, recttransform02.sizeDelta.y);
 
         //表示を隠す
         text = GameObject.Find("Canvas/TxtContinue").GetComponent<Text>();

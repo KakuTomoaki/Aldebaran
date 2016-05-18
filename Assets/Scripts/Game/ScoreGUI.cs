@@ -9,7 +9,7 @@ public class ScoreGUI : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		mText = GetComponent<Text> ();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
