@@ -13,8 +13,8 @@ public class PlayerScript : MonoBehaviour {
     bool isGrounded; //着地しているかの判定
     bool isNotSideFloor_Up; //フロア関連
     private static int restJumps = 2; //ジャンプ回数
-    private float jumpHeight_1 = 1.5f;    //レベルデザインで数値変更よろす
-    private float jumpHeight_2 = 1f;    //レベルデザインで数値変更よろす
+    private float jumpHeight_1 = 1.8f;    //レベルデザインで数値変更よろす
+    private float jumpHeight_2 = 1.2f;    //レベルデザインで数値変更よろす
 
     //音関連
     private AudioSource SE_Jump;
@@ -60,13 +60,13 @@ public class PlayerScript : MonoBehaviour {
         if(GlobalVariableScript.CreateCount <= 5){
             GlobalVariableScript.moveSpeed = 6;
         } else if(GlobalVariableScript.CreateCount <= 10) {
-            GlobalVariableScript.moveSpeed = 9;
+            GlobalVariableScript.moveSpeed = 7;
         } else if(GlobalVariableScript.CreateCount <= 15) {
-            GlobalVariableScript.moveSpeed = 12;
+            GlobalVariableScript.moveSpeed = 8;
         } else if(GlobalVariableScript.CreateCount <= 20) {
-            GlobalVariableScript.moveSpeed = 15;
+            GlobalVariableScript.moveSpeed = 9;
         } else if(GlobalVariableScript.CreateCount <= 25) {
-            GlobalVariableScript.moveSpeed = 18;
+            GlobalVariableScript.moveSpeed = 10;
         }
 
         //クリアしたかどうかの判定を追加
