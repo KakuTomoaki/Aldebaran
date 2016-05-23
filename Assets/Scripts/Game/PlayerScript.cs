@@ -58,7 +58,7 @@ public class PlayerScript : MonoBehaviour {
 
         //CreateCountにより移動速度変化。
         if(GlobalVariableScript.CreateCount <= 5){
-            GlobalVariableScript.moveSpeed = 6;
+            GlobalVariableScript.moveSpeed = GlobalVariableScript.moveSpeed;
         } else if(GlobalVariableScript.CreateCount <= 10) {
             GlobalVariableScript.moveSpeed = 7;
         } else if(GlobalVariableScript.CreateCount <= 15) {
