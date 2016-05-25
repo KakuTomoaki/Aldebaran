@@ -35,6 +35,7 @@ public class GlobalVariableScript : MonoBehaviour {
     public static bool isCountDown = false;					// カウントダウンするかのフラグ
     public static bool isGameOver_BGM = false;              // GameOver時、BGMの再生停止のフラグ
     public static bool isPause_BGM = false;                 // Pause時、BGMの一時停止のフラグ
+    public static bool isSE_SpeedUp = false;                // スピードアップSE再生のフラグ
 
     // このオブジェクト用の変数
     private static bool isCreatedObj = false;   // オブジェクト作成済みフラグ

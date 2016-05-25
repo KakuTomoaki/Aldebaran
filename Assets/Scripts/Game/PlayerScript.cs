@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour {
     private AudioSource Jump_02;
     private AudioSource GameOver002;
     private AudioSource GameClear002;
+    private AudioSource SE_SpeedUp;
 
     //リザルト関連
     private GameObject ResultEdit;
@@ -49,12 +50,18 @@ public class PlayerScript : MonoBehaviour {
         SE_Bom = audioSources[3];
         Jump_01 = audioSources[4];
         Jump_02 = audioSources[5];
+        SE_SpeedUp = audioSources[6];
     }
 
     //Updateだとクリックを判定できない時があるため、
     //ジャンプの処理はUpdateメソッドに記述
     void Update() {
-        anim.SetBool("Run", true);
+        if(GlobalVariableScript.isCountDown == false) {
+            anim.SetBool("Stay", true);
+            return;
+        } else if(GlobalVariableScript.isCountDown == true) {
+            anim.SetBool("Run", true);
+        }
 
         //CreateCountにより移動速度変化。
         if(GlobalVariableScript.CreateCount <= 5){
@@ -69,6 +76,10 @@ public class PlayerScript : MonoBehaviour {
             GlobalVariableScript.moveSpeed = 10;
         }
 
+        if (GlobalVariableScript.isSE_SpeedUp == true) {
+            SE_SpeedUp.PlayOneShot(SE_SpeedUp.clip);
+            GlobalVariableScript.isSE_SpeedUp = false;
+        }
         //クリアしたかどうかの判定を追加
         //終了処理は一度だけ呼ぶ
         /*
