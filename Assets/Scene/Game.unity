@@ -369,7 +369,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 8c372c0a65325354b82bf261fa8b2ba2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 99d82251a25bb8a45ba7bad404ba711f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1553,14 +1553,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 487600, guid: 131c50fc6a40e4540beb6de68fcf3c69, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 3.5678554
-      objectReference: {fileID: 0}
-    - target: {fileID: 487600, guid: 131c50fc6a40e4540beb6de68fcf3c69, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 131c50fc6a40e4540beb6de68fcf3c69, type: 2}
   m_IsPrefabParent: 0
@@ -1607,7 +1599,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 66814273
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0030c1001cc8a9f46ade4a3e7c521a7a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e8d09c3fc8a4d354cbbdbadf50cbe41f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3426,6 +3418,7 @@ MonoBehaviour:
   - {fileID: 149590, guid: 41e7c44cdf1d0524b836edcd53149abd, type: 2}
   - {fileID: 159482, guid: 1950982c41a13b840b905819458b092d, type: 2}
   - {fileID: 193574, guid: f2acdc8a5f187f3428272cc9ec9c2de7, type: 2}
+  SpeedUp: {fileID: 0}
 --- !u!95 &2058094859
 Animator:
   serializedVersion: 3
@@ -3683,7 +3676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00383fde6094914489286091bbd0986d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeedUp: {fileID: 0}
 --- !u!1 &2142114882
 GameObject:
   m_ObjectHideFlags: 0
