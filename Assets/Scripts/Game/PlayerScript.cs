@@ -62,20 +62,7 @@ public class PlayerScript : MonoBehaviour {
         } else if(GlobalVariableScript.isCountDown == true) {
             anim.SetBool("Run", true);
         }
-
-        //CreateCountにより移動速度変化。
-        if(GlobalVariableScript.CreateCount == 5){
-            //GlobalVariableScript.moveSpeed = GlobalVariableScript.moveSpeed;
-        } else if(GlobalVariableScript.CreateCount == 10) {
-            GlobalVariableScript.moveSpeed = 7;
-        } else if(GlobalVariableScript.CreateCount == 15) {
-            GlobalVariableScript.moveSpeed = 8;
-        } else if(GlobalVariableScript.CreateCount == 20) {
-            GlobalVariableScript.moveSpeed = 9;
-        } else if(GlobalVariableScript.CreateCount == 25) {
-            GlobalVariableScript.moveSpeed = 10;
-        }
-
+        
         if (GlobalVariableScript.isSE_SpeedUp == true) {
             SE_SpeedUp.PlayOneShot(SE_SpeedUp.clip);
             GlobalVariableScript.isSE_SpeedUp = false;
