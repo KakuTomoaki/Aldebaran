@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour {
     private AudioSource SE_SpeedUp;
 
     //リザルト関連
-    private GameObject ResultEdit;
+    private GameObject gameobject;
 	private bool isCleard = false;
     private bool isContinue = false;
 	private bool isGameOver = false;
@@ -37,6 +37,8 @@ public class PlayerScript : MonoBehaviour {
     //表示用オブジェクト
     Text text;
     Image image;
+
+    private GameObject canvas;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>(); //GetComponentの処理をキャッシュしておく
@@ -215,38 +217,44 @@ public class PlayerScript : MonoBehaviour {
         //画面停止する
         Time.timeScale = 0;
 
+        //Pauseボタンを消す
+        image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
+        image.enabled = false;
+
         //コンティニューのオブジェクトを表示する
-        text = GameObject.Find("Canvas/TxtContinue").GetComponent<Text>();
-        text.enabled = true;
-
-        image = GameObject.Find("Canvas/BtnContnueYes").GetComponent<Image>();
-        image.enabled = true;
-        text = GameObject.Find("Canvas/BtnContnueYes/Text").GetComponent<Text>();
-        text.enabled = true;
-
-        image = GameObject.Find("Canvas/BtnContinueNo").GetComponent<Image>();
-        image.enabled = true;
-        text = GameObject.Find("Canvas/BtnContinueNo/Text").GetComponent<Text>();
-        text.enabled = true;
+        canvas = GameObject.Find("Canvas_Continue");
+        canvas.GetComponent<Canvas>().enabled = true;
     }
 
     //GameOverメソッド
     void GameOver() {
-//        if (GlobalVariableScript.PlayerLife == 0) {
-            isGameOver = true;
-            anim.speed = 0;
-            rb.velocity = Vector2.zero;
-            rb.isKinematic = true;
-            restJumps = 0;                                      // ジャンプ回数0
-            GlobalVariableScript.moveSpeed = 0;                 // 移動速度0
-            GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
-            GlobalVariableScript.PlayerLife = GlobalVariableScript.CnsPlayerLife;       //ライフを最大値に戻す
-//        }
-//        else {
-//            return;
-//        }
+        //        if (GlobalVariableScript.PlayerLife == 0) {
+        //isGameOver = true;
+        //anim.speed = 0;
+        //rb.velocity = Vector2.zero;
+        //rb.isKinematic = true;
+        //restJumps = 0;                                      // ジャンプ回数0
+        //GlobalVariableScript.moveSpeed = 0;                 // 移動速度0
+
+        GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
+
+        //データを初期化
+        gameobject = GameObject.Find("Initialize");
+        gameobject.SendMessage("InitializeAll");
+
+        //表示の停止のためにTimeScaleを0に
+        Time.timeScale = 0;
+
+        //リザルトを表示
+        gameobject = GameObject.Find("Result");
+        gameobject.SendMessage("ShowResult");
+
+        //        }
+        //        else {
+        //            return;
+        //        }
     }
-    
+
     //Jumpメソッド
     void Jump() {
 

@@ -20,6 +20,11 @@ public class GlobalVariableScript : MonoBehaviour {
     public const int CoinBluePoint = 500;                   // 青色コインをとったときに増えるポイント
     public const int CoinRedPoint = 1000;                   // 赤色コインをとったときに増えるポイント
 
+    //データ保存関連
+    public const string Prefs_Score1st = "Prefs_Score1st";   //1位のデータを書き込むPlayerPrefs	
+    public const string Prefs_Score2nd = "Prefs_Score2nd";   //2位のデータを書き込むPlayerPrefs	
+    public const string Prefs_Score3rd = "Prefs_Score3rd";	 //3位のデータを書き込むPlayerPrefs	
+
     /********************************
     * 変数
     ********************************/

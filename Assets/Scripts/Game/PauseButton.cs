@@ -4,6 +4,13 @@ using UnityEngine.UI;
 
 public class PauseButton : MonoBehaviour {
 
+    private GameObject canvas;
+
+    void Start()
+    {
+        canvas = GameObject.Find("Canvas_Pause");
+    }
+
     public void Pause()
     {
         //表示用オブジェクト
@@ -12,29 +19,13 @@ public class PauseButton : MonoBehaviour {
 
         Time.timeScale = 0;
 
-        //Pauseボタンを消す
+        //Pause Menuを表示
+        canvas = GameObject.Find("Canvas_Pause");
+        canvas.GetComponent<Canvas>().enabled = true;
+
+        //Pause Buttonを非表示
         image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
         image.enabled = false;
-
-        //半透明画像
-        //image = GameObject.Find("Canvas/Base_Alpha70").GetComponent<Image>();
-        //image.enabled = true;
-
-        //Menuを表示する
-        image = GameObject.Find("Canvas/Pause_Continue").GetComponent<Image>();
-        image.enabled = true;
-        text = GameObject.Find("Canvas/Pause_Continue/Text").GetComponent<Text>();
-        text.enabled = true;
-
-        image = GameObject.Find("Canvas/Pause_Retry").GetComponent<Image>();
-        image.enabled = true;
-        text = GameObject.Find("Canvas/Pause_Retry/Text").GetComponent<Text>();
-        text.enabled = true;
-
-        image = GameObject.Find("Canvas/Pause_TopMenu").GetComponent<Image>();
-        image.enabled = true;
-        text = GameObject.Find("Canvas/Pause_TopMenu/Text").GetComponent<Text>();
-        text.enabled = true;
 
         //        //BGMの一時停止フラグON
         //        GlobalVariableScript.isPause_BGM = true;
