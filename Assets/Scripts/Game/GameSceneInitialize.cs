@@ -25,18 +25,6 @@ public class GameSceneInitialize : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
-        //初期化（リトライ時の再呼び出しも考慮する）
-        Time.timeScale = 1;                 // タイムスケール
-        Score.instance.ScoreContinue();     // スコア
-
-        text = GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>();
-        text.text = "X" + GlobalVariableScript.PlayerLife.ToString();
-
-        recttransform01 = GameObject.Find("Canvas/CoinBar01").GetComponent<RectTransform>();
-        recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
-        recttransform02.sizeDelta = new Vector2(recttransform01.sizeDelta.x * GlobalVariableScript.BonusRedCoin / GlobalVariableScript.CnsBounsRedCoin, recttransform02.sizeDelta.y);
-
         //キャンバスとオブジェクトの表示・非表示を切り替える
         canvas = GameObject.Find("Canvas");
         canvas.GetComponent<Canvas>().enabled = true;
@@ -53,9 +41,26 @@ public class GameSceneInitialize : MonoBehaviour {
         canvas = GameObject.Find("Canvas_Result");
         canvas.GetComponent<Canvas>().enabled = false;
 
-        //ライフが最大（ゲーム初回起動、リトライ時）はカウントダウンへ突入
-        if (GlobalVariableScript.PlayerLife == GlobalVariableScript.CnsPlayerLife)
-        {
+        //初期化フラグが立っている（ゲームを最初の状態からプレイする）時
+        if (GlobalVariableScript.isInitializeAll == true){
+            //初期化フラグをおろす
+            GlobalVariableScript.isInitializeAll = false;
+ 
+            //各種データを初期化
+            Time.timeScale = 1;                         //タイムスケールを元に戻す
+            GlobalVariableScript.isCountDown = false;   //カウントダウンフラグをおろす
+            GlobalVariableScript.CreateCount = 0;        //足場の生成数をクリアする
+            GlobalVariableScript.PlayerLife = GlobalVariableScript.CnsPlayerLife;       //ライフを最大値に戻す
+            GlobalVariableScript.BonusRedCoin = 0;      //コインのバーをもとに戻す
+            GlobalVariableScript.ScoreSave = 0;         //保存されていたスコアをもとに戻す
+            GlobalVariableScript.moveSpeed = GlobalVariableScript.MoveSpeedDefault;     //スピードをデフォルトに戻す
+
+            recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
+            recttransform02.sizeDelta = new Vector2(0, recttransform02.sizeDelta.y);    //コインバーを描画しなおす
+
+            text = GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>();
+            text.text = "X" + GlobalVariableScript.PlayerLife.ToString();
+
             image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
             image.enabled = false;
 
@@ -77,30 +82,18 @@ public class GameSceneInitialize : MonoBehaviour {
             // カウントダウンのコルーチンを呼び出す
             StartCoroutine(CountdownCoroutine());
         }
-    }
+        else
+        {
+            Time.timeScale = 1;                 // タイムスケール
+            Score.instance.ScoreContinue();     // スコア
 
-    public void InitializeAll()
-    {
-        //タイムスケールを元に戻す
-        Time.timeScale = 1;
+            text = GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>();
+            text.text = "X" + GlobalVariableScript.PlayerLife.ToString();
 
-        //カウントダウンフラグをおろす
-        GlobalVariableScript.isCountDown = false;
-
-        //足場の生成数をクリアする
-        GlobalVariableScript.CreateCount = 0;
-
-        //ライフを最大値に戻す
-        GlobalVariableScript.PlayerLife = GlobalVariableScript.CnsPlayerLife;
-
-        //コインのバーをもとに戻す
-        GlobalVariableScript.BonusRedCoin = 0;
-
-        //保存されていたスコアをもとに戻す
-        GlobalVariableScript.ScoreSave = 0;
-
-        recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
-        recttransform02.sizeDelta = new Vector2(0, recttransform02.sizeDelta.y);
+            recttransform01 = GameObject.Find("Canvas/CoinBar01").GetComponent<RectTransform>();
+            recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
+            recttransform02.sizeDelta = new Vector2(recttransform01.sizeDelta.x * GlobalVariableScript.BonusRedCoin / GlobalVariableScript.CnsBounsRedCoin, recttransform02.sizeDelta.y);
+        }
     }
 
     IEnumerator CountdownCoroutine()

@@ -11,8 +11,10 @@ public class ContinueNo : MonoBehaviour {
         //今いるシーンがtestという名前であれば、testという名前のシーンに移動する
         if (Application.loadedLevelName == "Game")
         {
-            GameSceneInitialize = GameObject.Find("Initialize");
-            GameSceneInitialize.SendMessage("InitializeAll");
+            //GameSceneInitialize = GameObject.Find("Initialize");
+            //GameSceneInitialize.SendMessage("InitializeAll");
+            //初期化フラグをたてる
+            GlobalVariableScript.isInitializeAll = true;
 
             Application.LoadLevel("Menu");
         }

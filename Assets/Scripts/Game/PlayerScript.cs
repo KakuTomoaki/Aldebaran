@@ -238,9 +238,8 @@ public class PlayerScript : MonoBehaviour {
 
         GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
 
-        //データを初期化
-        gameobject = GameObject.Find("Initialize");
-        gameobject.SendMessage("InitializeAll");
+        //初期化フラグをたてる
+        GlobalVariableScript.isInitializeAll = true;
 
         //表示の停止のためにTimeScaleを0に
         Time.timeScale = 0;

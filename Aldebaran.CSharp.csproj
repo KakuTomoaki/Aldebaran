@@ -61,6 +61,12 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Camera\CameraFade.cs" />
@@ -86,10 +92,10 @@
     <Compile Include="Assets\Scripts\Game\StepCreate.cs" />
     <Compile Include="Assets\Scripts\Game\TopMenu.cs" />
     <Compile Include="Assets\Scripts\GlobalVariableScript.cs" />
-    <Compile Include="Assets\Scripts\Menu\GameStartScript.cs" />
-    <Compile Include="Assets\Scripts\Menu\OptionScript.cs" />
-    <Compile Include="Assets\Scripts\Menu\ScoreScript.cs" />
     <Compile Include="Assets\Scripts\Option\BGMVolume.cs" />
+    <Compile Include="Assets\Scripts\Option\Menu\GameStartScript.cs" />
+    <Compile Include="Assets\Scripts\Option\Menu\OptionScript.cs" />
+    <Compile Include="Assets\Scripts\Option\Menu\ScoreScript.cs" />
     <Compile Include="Assets\Scripts\Option\OptionBackScript.cs" />
     <Compile Include="Assets\Scripts\Option\SEVolume.cs" />
     <Compile Include="Assets\Scripts\Option\SetBGMVolume.cs" />

@@ -17,6 +17,9 @@ public class GameStartScript : MonoBehaviour {
 
     public void NextScene()
     {
+        //初期化フラグをたてる
+        GlobalVariableScript.isInitializeAll = true;
+
         select.volume = PlayerPrefs.GetFloat(GlobalVariableScript.SEVolumePrefs, 1);
         select.PlayOneShot(select.clip);
         StartCoroutine("Wait_Time");

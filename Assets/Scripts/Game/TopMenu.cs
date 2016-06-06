@@ -3,15 +3,15 @@ using System.Collections;
 
 public class TopMenu : MonoBehaviour {
 
-    private GameObject GameSceneInitialize;
-
     public void NextScene()
     {
         //今いるシーンがtestという名前であれば、testという名前のシーンに移動する
         if (Application.loadedLevelName == "Game")
         {
-            GameSceneInitialize = GameObject.Find("Initialize");
-            GameSceneInitialize.SendMessage("InitializeAll");
+            //初期化フラグをたてる
+            GlobalVariableScript.isInitializeAll = true;
+
+            Time.timeScale = 1;
 
             Application.LoadLevel("Menu");
         }

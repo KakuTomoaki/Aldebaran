@@ -28,6 +28,9 @@ public class GlobalVariableScript : MonoBehaviour {
     /********************************
     * 変数
     ********************************/
+    //初期化フラグ
+    public static bool isInitializeAll = false;             //ゲームデータを初期化するフラグ
+
     //ゲームシーンで利用する変数
     public static int CreateCount = 0;                      //呼びだされたobjectの数
     public static int BonusRedCoin = 0;                     //赤コインの取得数
