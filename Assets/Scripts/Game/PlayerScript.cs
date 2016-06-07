@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
+using NendUnityPlugin.AD;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -53,6 +54,13 @@ public class PlayerScript : MonoBehaviour {
         Jump_01 = audioSources[4];
         Jump_02 = audioSources[5];
         SE_SpeedUp = audioSources[6];
+
+#if UNITY_IPHONE
+NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
+#elif UNITY_ANDROID
+        NendAdInterstitial.Instance.Load("9bebab59eff92c6188651412e4c3a137774eaeaf", "608647");
+#else
+#endif
     }
 
     //Updateだとクリックを判定できない時があるため、
@@ -247,6 +255,10 @@ public class PlayerScript : MonoBehaviour {
         //リザルトを表示
         gameobject = GameObject.Find("Result");
         gameobject.SendMessage("ShowResult");
+
+        //広告を表示
+        NendAdInterstitial.Instance.Show();
+        Debug.Log("広告表示");
 
         //        }
         //        else {
