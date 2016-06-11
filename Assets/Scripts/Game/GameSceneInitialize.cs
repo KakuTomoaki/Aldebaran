@@ -7,16 +7,15 @@ using UnityEngine.UI;
 public class GameSceneInitialize : MonoBehaviour {
 
     //表示用オブジェクト
-    private Text text;
-    private Image image;
-    private GameObject canvas;
+    //private Text text;
+    //private Image image;
 
+    private GameObject canvas;
+    private Text mCountDown;
     private RectTransform recttransform01;
     private RectTransform recttransform02;
 
     private int movespeedbuf;   // 一時保存用Unityちゃんの速度
-
-    private Text mCountDown;
 
     public AudioSource CountDown3Voice;     // 3秒前ボイス
     public AudioSource CountDown2Voice;     // 2秒前ボイス
@@ -29,8 +28,7 @@ public class GameSceneInitialize : MonoBehaviour {
         canvas = GameObject.Find("Canvas");
         canvas.GetComponent<Canvas>().enabled = true;
 
-        text = GameObject.Find("Canvas/CountDown").GetComponent<Text>();
-        text.enabled = false;
+        GameObject.Find("Canvas/CountDown").GetComponent<Text>().enabled = false;
 
         canvas = GameObject.Find("Canvas_Pause");
         canvas.GetComponent<Canvas>().enabled = false;
@@ -47,26 +45,28 @@ public class GameSceneInitialize : MonoBehaviour {
             GlobalVariableScript.isInitializeAll = false;
  
             //各種データを初期化
-            Time.timeScale = 1;                         //タイムスケールを元に戻す
-            GlobalVariableScript.isCountDown = false;   //カウントダウンフラグをおろす
-            GlobalVariableScript.CreateCount = 0;        //足場の生成数をクリアする
+            Time.timeScale = 1;                                                         //タイムスケールを元に戻す
+            GlobalVariableScript.isCountDown = false;                                   //カウントダウンフラグをおろす
+            GlobalVariableScript.CreateCount = 0;                                       //足場の生成数をクリアする
             GlobalVariableScript.PlayerLife = GlobalVariableScript.CnsPlayerLife;       //ライフを最大値に戻す
-            GlobalVariableScript.BonusRedCoin = 0;      //コインのバーをもとに戻す
-            GlobalVariableScript.ScoreSave = 0;         //保存されていたスコアをもとに戻す
+            GlobalVariableScript.BonusRedCoin = 0;                                      //コインのバーをもとに戻す
+            GlobalVariableScript.ScoreSave = 0;                                         //保存されていたスコアをもとに戻す
             GlobalVariableScript.moveSpeed = GlobalVariableScript.MoveSpeedDefault;     //スピードをデフォルトに戻す
 
+            //コインバーを再描画
             recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
-            recttransform02.sizeDelta = new Vector2(0, recttransform02.sizeDelta.y);    //コインバーを描画しなおす
+            recttransform02.sizeDelta = new Vector2(0, recttransform02.sizeDelta.y);
 
-            text = GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>();
-            text.text = "X" + GlobalVariableScript.PlayerLife.ToString();
+            //ライフを表示
+            GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>().text = "X" + GlobalVariableScript.PlayerLife.ToString();
 
-            image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
-            image.enabled = false;
+            //Pause Buttonを無効化
+            GameObject.Find("Canvas/Pause").GetComponent<Button>().interactable = false;
 
-            text = GameObject.Find("Canvas/CountDown").GetComponent<Text>();
-            text.enabled = true;
+            //カウントダウンを非表示
+            GameObject.Find("Canvas/CountDown").GetComponent<Text>().enabled = true;
 
+            //Unityちゃんのスピードを一時保存し、0にする
             movespeedbuf = GlobalVariableScript.moveSpeed;
             GlobalVariableScript.moveSpeed = 0;
 
@@ -77,9 +77,8 @@ public class GameSceneInitialize : MonoBehaviour {
             CountDown1Voice = mAudio[2];
             CountDownStartVoice = mAudio[3];
 
-            mCountDown = GameObject.Find("Canvas/CountDown").GetComponent<Text>();
-
             // カウントダウンのコルーチンを呼び出す
+            mCountDown = GameObject.Find("Canvas/CountDown").GetComponent<Text>();
             StartCoroutine(CountdownCoroutine());
         }
         else
@@ -87,9 +86,10 @@ public class GameSceneInitialize : MonoBehaviour {
             Time.timeScale = 1;                 // タイムスケール
             Score.instance.ScoreContinue();     // スコア
 
-            text = GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>();
-            text.text = "X" + GlobalVariableScript.PlayerLife.ToString();
+            //ライフを再描画
+            GameObject.Find("Canvas/txtPlayerLife").GetComponent<Text>().text = "X" + GlobalVariableScript.PlayerLife.ToString();
 
+            //コインバーを再描画
             recttransform01 = GameObject.Find("Canvas/CoinBar01").GetComponent<RectTransform>();
             recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();
             recttransform02.sizeDelta = new Vector2(recttransform01.sizeDelta.x * GlobalVariableScript.BonusRedCoin / GlobalVariableScript.CnsBounsRedCoin, recttransform02.sizeDelta.y);
@@ -113,9 +113,8 @@ public class GameSceneInitialize : MonoBehaviour {
         mCountDown.text = "GO";
         CountDownStartVoice.PlayOneShot(CountDownStartVoice.clip);
 
-        // 一時停止ボタンを表示させる
-        image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
-        image.enabled = true;
+        //Pause Buttonを有効化
+        GameObject.Find("Canvas/Pause").GetComponent<Button>().interactable = true;
 
         // カウントダウンフラグをオンにする
         GlobalVariableScript.isCountDown = true;

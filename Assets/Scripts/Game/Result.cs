@@ -5,24 +5,20 @@ using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
-
-    private GameObject canvas;
-
     public void ShowResult()
     {
+        GameObject canvas;
+        Text text;
+
         float[] ScoreArray = new float[4];
         int iBuf;
-
-        Text text;
-        Image image;
 
         //Continue Menuを非表示
         canvas = GameObject.Find("Canvas_Continue");
         canvas.GetComponent<Canvas>().enabled = false;
 
-        //Pause buttonを非表示
-        image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
-        image.enabled = false;
+        //Pause Buttonを無効化
+        GameObject.Find("Canvas/Pause").GetComponent<Button>().interactable = false;
 
         //1~3位のデータと今回のデータを配列に書き込む
         ScoreArray[0] = PlayerPrefs.GetFloat(GlobalVariableScript.Prefs_Score1st, 0);
@@ -36,16 +32,12 @@ public class Result : MonoBehaviour
 
         //データを前詰めにする
         //(一番目のデータが0=前詰めする必要があるときのみ行う）
-        if (ScoreArray[0] == 0)
-        {
-            for (int i = 0; i < 4; i++)
-            {
+        if (ScoreArray[0] == 0){
+            for (int i = 0; i < 4; i++){
                 //0ではないデータが見つかった場合
-                if (ScoreArray[i] != 0)
-                {
+                if (ScoreArray[i] != 0){
                     iBuf = i;   //データの入っている先頭の番号
-                    for (int j = i; j < 4; j++)
-                    {
+                    for (int j = i; j < 4; j++){
                         //番号分だけ前に移動
                         ScoreArray[j - iBuf] = ScoreArray[j];
                         //移動したところには0を入れておく

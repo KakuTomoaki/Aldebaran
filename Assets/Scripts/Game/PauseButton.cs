@@ -4,31 +4,29 @@ using UnityEngine.UI;
 
 public class PauseButton : MonoBehaviour {
 
-    private GameObject canvas;
+    private GameObject canvas_pause;
+    private Button pause;
 
     void Start()
     {
-        canvas = GameObject.Find("Canvas_Pause");
+        canvas_pause = GameObject.Find("Canvas_Pause");
+        pause = GameObject.Find("Canvas/Pause").GetComponent<Button>();
     }
 
     public void Pause()
     {
-        //表示用オブジェクト
-        Text text;
-        Image image;
+        if(pause.interactable == true) {
+            Time.timeScale = 0;
 
-        Time.timeScale = 0;
+            //Pause Menuを表示
+            canvas_pause = GameObject.Find("Canvas_Pause");
+            canvas_pause.GetComponent<Canvas>().enabled = true;
 
-        //Pause Menuを表示
-        canvas = GameObject.Find("Canvas_Pause");
-        canvas.GetComponent<Canvas>().enabled = true;
+            //Pause Buttonを無効化
+            GameObject.Find("Canvas/Pause").GetComponent<Button>().interactable = false;
 
-        //Pause Buttonを非表示
-        image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
-        image.enabled = false;
-
-        //        //BGMの一時停止フラグON
-        //        GlobalVariableScript.isPause_BGM = true;
-
+            //        //BGMの一時停止フラグON
+            //        GlobalVariableScript.isPause_BGM = true;
+        }
     }
 }

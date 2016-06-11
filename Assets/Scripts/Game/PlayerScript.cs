@@ -11,9 +11,12 @@ public class PlayerScript : MonoBehaviour {
 
     //ジャンプ関連
     public LayerMask groundLayer;//地面のレイヤー
-    bool isGrounded; //着地しているかの判定
-    bool isNotSideFloor_Up; //フロア関連
-    private static int restJumps = 2; //ジャンプ回数
+
+    bool isGrounded;            //着地しているかの判定
+    bool isNotSideFloor_Up;     //フロア関連
+    bool isInput;               //ジャンプを受け付けるかの判定
+
+    private static int restJumps = 2;     //ジャンプ回数
     private float jumpHeight_1 = 1.8f;    //レベルデザインで数値変更よろす
     private float jumpHeight_2 = 1.2f;    //レベルデザインで数値変更よろす
 
@@ -39,7 +42,10 @@ public class PlayerScript : MonoBehaviour {
     Text text;
     Image image;
 
-    private GameObject canvas;
+    //キャンバス
+    private GameObject canvas_pause;
+    private GameObject canvas_continue;
+    private GameObject canvas_relust;
 
     void Start() {
         rb = GetComponent<Rigidbody2D>(); //GetComponentの処理をキャッシュしておく
@@ -54,6 +60,11 @@ public class PlayerScript : MonoBehaviour {
         Jump_01 = audioSources[4];
         Jump_02 = audioSources[5];
         SE_SpeedUp = audioSources[6];
+
+        //キャンバスをキャッシュ
+        canvas_pause = GameObject.Find("Canvas_Pause");
+        canvas_continue = GameObject.Find("Canvas_Continue");
+        canvas_relust = GameObject.Find("Canvas_Result");
 
 #if UNITY_IPHONE
 NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
@@ -111,21 +122,49 @@ NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
 
         */
 
-        //ユニティちゃん中央から足元にかけて、接地判定用のラインを引く
-        isGrounded = Physics2D.Linecast(
+        //Menuのいずれかが表示されていた場合は、入力をうけつけない
+        isInput = true;
+
+        if(canvas_pause.GetComponent<Canvas>().enabled == true ||
+           canvas_continue.GetComponent<Canvas>().enabled == true ||
+           canvas_relust.GetComponent<Canvas>().enabled == true)
+        {
+            isInput = false;
+        }
+
+        if (isInput == true)
+        {
+            //ユニティちゃん中央から足元にかけて、接地判定用のラインを引く
+            isGrounded = Physics2D.Linecast(
             transform.position + transform.up * 1,
             transform.position - transform.up * 0.1f,
             groundLayer); // Linecastが判定するレイヤー
 
-        //スマートフォン用
-        if (Input.touchCount > 0) {
-            /*
-            if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない ※一旦保留
-                return;
+            //スマートフォン用
+            if (Input.touchCount > 0) {
+                /*
+                if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない ※一旦保留
+                    return;
+                }
+                */
+                Touch touch = Input.GetTouch(0);
+                if (touch.phase == TouchPhase.Began) {
+                    if (restJumps > 0) {
+                        if (isGrounded == false) {
+                            restJumps = 1;
+                        }
+                        Jump();
+                    }
+                }
             }
-            */
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began) {
+
+            //PC版用
+            if (Input.GetButtonDown("Jump")) {
+                /*
+                if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない ※一旦保留
+                    return;
+                }
+                */
                 if (restJumps > 0) {
                     if (isGrounded == false) {
                         restJumps = 1;
@@ -133,23 +172,8 @@ NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
                     Jump();
                 }
             }
+            Anim();
         }
-
-        //PC版用
-        if (Input.GetButtonDown("Jump")) {
-            /*
-            if (GlobalVariableScript.isCountDown == false) {    //カウントダウン時は操作を受け付けない ※一旦保留
-                return;
-            }
-            */
-            if (restJumps > 0) {
-                if (isGrounded == false) {
-                    restJumps = 1;
-                }
-                Jump();
-            }
-        }
-        Anim();
     }
 
 
@@ -171,6 +195,9 @@ NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
         
         if (col.gameObject.tag == "DeadZone") {
             SE_Fall.PlayOneShot(SE_Fall.clip);                // 落下音再生
+            
+            //画面停止する
+            Time.timeScale = 0;
 
             //ライフを1へらす
             GlobalVariableScript.PlayerLife = GlobalVariableScript.PlayerLife - 1;
@@ -222,16 +249,11 @@ NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
 
     //Continueメソッド
     void Continue() {
-        //画面停止する
-        Time.timeScale = 0;
-
-        //Pauseボタンを消す
-        image = GameObject.Find("Canvas/Pause").GetComponent<Image>();
-        image.enabled = false;
+        //Pause Buttonを無効化
+        GameObject.Find("Canvas/Pause").GetComponent<Button>().interactable = false;
 
         //コンティニューのオブジェクトを表示する
-        canvas = GameObject.Find("Canvas_Continue");
-        canvas.GetComponent<Canvas>().enabled = true;
+        canvas_continue.GetComponent<Canvas>().enabled = true;
     }
 
     //GameOverメソッド
@@ -248,9 +270,6 @@ NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
 
         //初期化フラグをたてる
         GlobalVariableScript.isInitializeAll = true;
-
-        //表示の停止のためにTimeScaleを0に
-        Time.timeScale = 0;
 
         //リザルトを表示
         gameobject = GameObject.Find("Result");
