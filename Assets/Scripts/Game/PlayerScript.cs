@@ -218,6 +218,9 @@ NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
         if (col.gameObject.tag == "Spike") {
             SE_Bom.PlayOneShot(SE_Bom.clip);                  // 爆発音再生
 
+            //画面停止する
+            Time.timeScale = 0;
+
             //ライフを1へらす
             GlobalVariableScript.PlayerLife = GlobalVariableScript.PlayerLife - 1;
 
