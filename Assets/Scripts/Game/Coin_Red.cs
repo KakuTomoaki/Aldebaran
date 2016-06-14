@@ -50,6 +50,12 @@ public class Coin_Red : MonoBehaviour {
             //コインの取得枚数を増やす
             GlobalVariableScript.BonusRedCoin = GlobalVariableScript.BonusRedCoin + 1;
 
+            //赤コインが10枚になったらボーナスフラグを立てて枚数をリセット
+            if(GlobalVariableScript.BonusRedCoin == 10)
+            {
+                GlobalVariableScript.BonusFlag = true;
+                GlobalVariableScript.BonusRedCoin = 0;
+            }
             //コインバーの表示を変更
             recttransform02.sizeDelta = new Vector2(recttransform01.sizeDelta.x * GlobalVariableScript.BonusRedCoin/ GlobalVariableScript.CnsBounsRedCoin, recttransform02.sizeDelta.y);
 

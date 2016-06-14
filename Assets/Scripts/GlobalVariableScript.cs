@@ -13,6 +13,7 @@ public class GlobalVariableScript : MonoBehaviour {
     //プレイヤー関連
     public const int CnsPlayerLife = 3;                     //ユニティちゃんのライフの最大値
     public const int CnsBounsRedCoin = 10;                   //ボーナスステージに突入するまでの赤コインの数
+    public static bool BonusFlag = false;
     public const int MoveSpeedDefault = 6;		            //デフォルトの横移動速度
 
     //コイン
