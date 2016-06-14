@@ -54,3 +54,5 @@ Temp
 *.userprefs
 Aldebaran.CSharp.csproj
 Aldebaran.CSharp.Plugins.csproj
+Assets/Images/SpeedUP.meta
+Assets/Images/SpeedUP/speedup_01.png.meta
