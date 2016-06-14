@@ -52,6 +52,7 @@ public class GameSceneInitialize : MonoBehaviour {
             GlobalVariableScript.BonusRedCoin = 0;                                      //コインのバーをもとに戻す
             GlobalVariableScript.ScoreSave = 0;                                         //保存されていたスコアをもとに戻す
             GlobalVariableScript.moveSpeed = GlobalVariableScript.MoveSpeedDefault;     //スピードをデフォルトに戻す
+            GlobalVariableScript.isPause_BGM = false;
 
             //コインバーを再描画
             recttransform02 = GameObject.Find("Canvas/CoinBar02").GetComponent<RectTransform>();

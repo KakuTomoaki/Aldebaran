@@ -77,7 +77,9 @@
     <Compile Include="Assets\Scripts\Game\Coin_Red.cs" />
     <Compile Include="Assets\Scripts\Game\ContinueNo.cs" />
     <Compile Include="Assets\Scripts\Game\ContinueYes.cs" />
+    <Compile Include="Assets\Scripts\Game\GameBGMScript.cs" />
     <Compile Include="Assets\Scripts\Game\GameSceneInitialize.cs" />
+    <Compile Include="Assets\Scripts\Game\MenuBGMScript.cs" />
     <Compile Include="Assets\Scripts\Game\PauseButton.cs" />
     <Compile Include="Assets\Scripts\Game\Pause_Continue.cs" />
     <Compile Include="Assets\Scripts\Game\PlayerScript.cs" />

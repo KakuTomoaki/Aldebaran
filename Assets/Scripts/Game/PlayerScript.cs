@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine.UI;
 using System;
-using NendUnityPlugin.AD;
 
 public class PlayerScript : MonoBehaviour {
 
@@ -66,12 +65,6 @@ public class PlayerScript : MonoBehaviour {
         canvas_continue = GameObject.Find("Canvas_Continue");
         canvas_relust = GameObject.Find("Canvas_Result");
 
-#if UNITY_IPHONE
-NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
-#elif UNITY_ANDROID
-        NendAdInterstitial.Instance.Load("9bebab59eff92c6188651412e4c3a137774eaeaf", "608647");
-#else
-#endif
     }
 
     //Updateだとクリックを判定できない時があるため、
@@ -278,9 +271,6 @@ NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
         gameobject = GameObject.Find("Result");
         gameobject.SendMessage("ShowResult");
 
-        //広告を表示
-        NendAdInterstitial.Instance.Show();
-        Debug.Log("広告表示");
 
         //        }
         //        else {

@@ -9,6 +9,7 @@ public class Retry : MonoBehaviour {
         {
             //初期化フラグをたてる
             GlobalVariableScript.isInitializeAll = true;
+            GlobalVariableScript.isGameOver_BGM = false;         // BGM再生停止フラグOFF
 
             Application.LoadLevel(Application.loadedLevelName);
         }

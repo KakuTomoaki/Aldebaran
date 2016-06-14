@@ -10,6 +10,7 @@ public class TopMenu : MonoBehaviour {
         {
             //初期化フラグをたてる
             GlobalVariableScript.isInitializeAll = true;
+            GlobalVariableScript.isGameOver_BGM = false;         // BGM再生停止フラグOFF
 
             Time.timeScale = 1;
 

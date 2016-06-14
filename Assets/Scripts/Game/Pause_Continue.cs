@@ -22,7 +22,8 @@ public class Pause_Continue : MonoBehaviour {
         //Pause Buttonを有効化
         GameObject.Find("Canvas/Pause").GetComponent<Button>().interactable = true;
 
-        //        //BGMの一時停止フラグON
-        //        GlobalVariableScript.isPause_BGM = true;	
+        //BGMの一時停止フラグOFF
+        GlobalVariableScript.isPause_BGM = false;
+        GameBGMScript.GameBGM.Play();
     }
 }

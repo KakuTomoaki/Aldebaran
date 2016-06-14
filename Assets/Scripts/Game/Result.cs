@@ -2,11 +2,40 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using NendUnityPlugin.AD;
 
-public class Result : MonoBehaviour
-{
+public class Result : MonoBehaviour{
+
+    public static AudioSource GameOverBGM;
+
+    public void Start() {
+        if (SceneManager.GetActiveScene().name == "Game") {
+
+#if UNITY_IPHONE
+NendAdInterstitial.Instance.Load("iOS apiKey", "iOS spotId");
+#elif UNITY_ANDROID
+            NendAdInterstitial.Instance.Load("9bebab59eff92c6188651412e4c3a137774eaeaf", "608647");
+#else
+#endif
+            AudioSource[] audioSources = GetComponents<AudioSource>();
+            GameOverBGM = audioSources[0];
+
+        }
+
+    }
+
     public void ShowResult()
     {
+
+        /**********広告を表示**********/
+        NendAdInterstitial.Instance.Show();
+        Debug.Log("広告表示");
+
+        GlobalVariableScript.isGameOver_BGM = true;         // BGM再生停止フラグON
+
+        GameOverBGM.Play();
+
         GameObject canvas;
         Text text;
 
