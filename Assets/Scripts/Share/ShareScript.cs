@@ -27,8 +27,6 @@ public class ShareScript : MonoBehaviour {
     // シェア処理
     private IEnumerator Share() {
         select.PlayOneShot(select.clip);
-        // 画面をキャプチャ
-        //Application.CaptureScreenshot("screenShot.png");
 
         // キャプチャを保存するので１フレーム待つ
         yield return new WaitForSeconds(SE_WaitTime);
@@ -38,12 +36,5 @@ public class ShareScript : MonoBehaviour {
         string url = "http://google.com/";
         SocialConnector.Share(text, url);
     
-        // キャプチャの保存先を指定
-        //string texture_url = Application.persistentDataPath + "/screenShot.png";
-
-        // iOS側の処理を呼び出す
-        //SocialConnector.Share(text, url, texture_url);
-        SocialConnector.Share(text, url);
-
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameShareScript : MonoBehaviour {
     
     private AudioSource select;
+    private bool isShare = false;
     
     Text G_Score;
 
@@ -21,19 +22,11 @@ public class GameShareScript : MonoBehaviour {
     // シェア
     public void OnPushShare() {
         select.PlayOneShot(select.clip);
-        // 画面をキャプチャ
-        //Application.CaptureScreenshot("screenShot.png");
 
+        Debug.Log("Share Tap！");
         // シェアテキスト設定
-        string text = "Sonic Speed Breaker " + G_Score.text + "！ この記録を抜けるかな？";
+        string text = "Sonic Speed Breaker Score:" + G_Score.text + "！ この記録を抜けるかな？";
         string url = "http://google.com/";
-        SocialConnector.Share(text, url);
-
-        // キャプチャの保存先を指定
-        //string texture_url = Application.persistentDataPath + "/screenShot.png";
-
-        // iOS側の処理を呼び出す
-        //SocialConnector.Share(text, url, texture_url);
         SocialConnector.Share(text, url);
 
     }
