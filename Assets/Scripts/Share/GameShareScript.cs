@@ -25,7 +25,7 @@ public class GameShareScript : MonoBehaviour {
 
         Debug.Log("Share Tap！");
         // シェアテキスト設定
-        string text = "Sonic Speed Breaker Score:" + G_Score.text + "！ この記録を抜けるかな？";
+        string text = "Sonic Speed Breaker Score:" + G_Score.text + "！";
         string url = "http://google.com/";
         SocialConnector.Share(text, url);
 
