@@ -37,9 +37,10 @@ public class Coin : MonoBehaviour {
 			mRenderer.enabled = false;
 			//当たりを消す
 			mCollider2D.enabled = false;
-			
-			//音を再生する
-			mAudio.Play();
+
+            //音を再生する
+            mAudio.volume = PlayerPrefs.GetFloat(GlobalVariableScript.SEVolumePrefs, 1);
+            mAudio.Play();
 			//音が流れ終わると消える
 			Destroy(gameObject,mAudio.clip.length);
 		}

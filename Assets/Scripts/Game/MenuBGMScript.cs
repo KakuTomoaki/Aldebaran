@@ -38,6 +38,7 @@ public class MenuBGMScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        MenuBGM.volume = PlayerPrefs.GetFloat(GlobalVariableScript.BGMVolumePrefs, 1);
         if (SceneManager.GetActiveScene().name == "Game") {
             MenuBGM.Stop();
             GlobalVariableScript.isMenuBGM = false;

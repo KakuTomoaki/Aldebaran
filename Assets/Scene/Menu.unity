@@ -817,7 +817,6 @@ GameObject:
   - 4: {fileID: 961846048}
   - 82: {fileID: 961846049}
   - 114: {fileID: 961846050}
-  - 114: {fileID: 961846051}
   m_Layer: 0
   m_Name: MenuBGM
   m_TagString: Untagged
@@ -899,7 +898,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -920,17 +919,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 857920a6af395584090caa6a293e74ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &961846051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 961846047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f3f23ce14b5a7d4da891e71fc181cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1021246086
